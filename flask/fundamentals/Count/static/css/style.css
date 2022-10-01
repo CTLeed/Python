@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+}
+
+header h1 {
+    display: block;
+}
+
+p {
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bolder;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.click {
+    margin-right: 20px;
+}
+
+.reset {
+    margin-left: 20px;
+}
+
+.container2 {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.add2 {
+    margin: 0 14px;
+}

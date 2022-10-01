@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <title>Great Number Game</title>
+</head>
+
+<body>
+    <!-- Header/Introduction -->
+    <header class="d-flex flex-column align-items-center">
+        <h1>Welcome to the Great Number Game!</h1>
+        <p>I am thinking of a number between 1 and 100</p>
+        <p>Take a guess</p>
+    </header>
+    <div class="container d-flex justify-content-center align-items-center">
+
+        <!-- Input guess is Too High -->
+        {% if session.answer == "too high": %}
+        <div class="too_high bg-warning text-center w-50 p-3 align-middle">
+            <p>Too high!</p>
+        </div>
+        {% endif %}
+
+        <!-- Input guess is Too Low -->
+        {% if session.answer == "too low": %}
+        <div class="too_low bg-danger text-center w-50 p-3 align-middler">
+            <p>Too low!</p>
+        </div>
+        {% endif %}
+
+        <!-- Input guess is correct -->
+        {% if session.answer == "correct": %}
+        <div class="correct bg-success text-center w-50 p-3 align-middle">
+            <p>{{session.number}} was correct!</p>
+            <p>You got it in {{session.count}} tries!</p>
+            <a href="/reset" class="btn btn-primary">Play again?</a>
+        </div>
+        {% endif %}
+    </div>
+
+
+    <!-- User input for guess    Disappears if guess is correct -->
+    {% if session.answer != "correct": %}
+    <div class="d-flex justify-content-center align-items-center m-3">
+        <form action="/process" method="post">
+            <label for="guess">Take a guess!!!</label>
+            <input type="number" name="guess" id="guess">
+            <button class="btn btn-dark">Submit</button>
+        </form>
+    </div>
+    {% endif %}
+
+
+    <!-- Bootstrap script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
