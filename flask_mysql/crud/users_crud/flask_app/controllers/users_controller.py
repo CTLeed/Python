@@ -1,5 +1,5 @@
 from flask_app import app
-from flask import render_template, redirect, request
+from flask import render_template, redirect, request, session
 from flask_app.models.users_model import User
 
 
@@ -33,8 +33,8 @@ def get_one_user(id):
 
 @app.route("/users/create", methods=["POST"])
 def create_user():
-    User.create(request.form)
-    return redirect("/")
+    user = User.create(request.form)
+    return redirect(f"/users/{user}")
 
 
 # Route to get render the update form
@@ -52,7 +52,7 @@ def update_user(id):
         "id": id
     }
     User.update(data)
-    return redirect("/")
+    return redirect(f"/users/{id}")
 
 # Route to delete user
 

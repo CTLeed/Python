@@ -12,38 +12,40 @@ class Model:
 
     # Get all info from table
 
-    @classmethod
+     @classmethod
     def get_all(cls):
-        query = "SELECT * FROM table"
-        tables_from_db = connectToMySQL(DATABASE).query_db(query)
-        tables = []
-        for each_one in tables_from_db:
-            table_instance = cls(each_one)
-            tables.append(table_instance)
-        return tables
+        query = "SELECT * FROM table_name"
+        table_from_db = connectToMySQL(DATABASE).query_db(query)
+        all_data = []
+        for each_dict in table_from_db:
+            dict_instance = cls(each_dict)
+            all_data.append(dict_instance)
+        return all_data
 
     @classmethod
     def get_one(cls, data):
-        query = "SELECT * FROM table WHERE id = %(id)s"
+        query = "SELECT * FROM table_name WHERE id = %(id)s;"
         results = connectToMySQL(DATABASE).query_db(query, data)
         if len(results) > 0:
             return cls(results[0])
-        else:
-            return False
+        return False
 
     # Add info to table
     @classmethod
     def create(cls, data):
-        query = "INSERT INTO table (name, ) VALUES (%(names)s, )"
-        table_id = connectToMySQL(DATABASE).query_db(query, data)
-        return table_id
+        query = "INSERT INTO table_name (first_name, last_name, email) VALUES (%(first_name)s, %(last_name)s, %(email)s)"
+        return connectToMySQL(DATABASE).query_db(query, data)
 
     #  Update info in table
     @classmethod
     def update(cls, data):
-        pass
+        query = "UPDATE table_name SET first_name = %(first_name)s, last_name = %(last_name)s, email = %(email)s WHERE id = %(id)s;"
+        return connectToMySQL(DATABASE).query_db(query, data)
 
     # Delete info from table
+
     @classmethod
     def delete(cls, data):
-        pass
+        query = "DELETE FROM table_name WHERE id = %(id)s"
+        return connectToMySQL(DATABASE).query_db(query, data)
+

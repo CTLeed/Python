@@ -1,32 +1,32 @@
 from flask_app.config.mysqlconnection import connectToMySQL
-DATABASE = "users_schema"
+DATABASE = "dojos_and_ninjas_schema"
 
 
-class User:
+class Ninja:
     def __init__(self, data):
         self.id = data["id"]
-        self.first_name = data["first_name"]
-        self.last_name = data["last_name"]
-        self.email = data["email"]
+        self.name = data["name"]
+        self.age = data["age"]
+        self.dojo_id = data["dojo_id"]
         self.created_at = data["created_at"]
         self.updated_at = data["updated_at"]
         return
 
     # Get all info from table
 
-    @classmethod
+     @classmethod
     def get_all(cls):
-        query = "SELECT * FROM users"
-        users_from_db = connectToMySQL(DATABASE).query_db(query)
-        all_users = []
-        for each_user in users_from_db:
-            user_instance = cls(each_user)
-            all_users.append(user_instance)
-        return all_users
+        query = "SELECT * FROM ninjas"
+        ninjas_from_db = connectToMySQL(DATABASE).query_db(query)
+        all_ninjas = []
+        for each_ninja in ninjas_from_db:
+            ninja_instance = cls(each_ninja)
+            all_ninjas.append(ninja_instance)
+        return all_ninjas
 
     @classmethod
     def get_one(cls, data):
-        query = "SELECT * FROM users WHERE id = %(id)s;"
+        query = "SELECT * FROM ninjas WHERE id = %(id)s;"
         results = connectToMySQL(DATABASE).query_db(query, data)
         if len(results) > 0:
             return cls(results[0])
@@ -35,18 +35,19 @@ class User:
     # Add info to table
     @classmethod
     def create(cls, data):
-        query = "INSERT INTO users (first_name, last_name, email) VALUES (%(first_name)s, %(last_name)s, %(email)s)"
+        query = "INSERT INTO ninjas(first_name, last_name, age, dojo_id) VALUES (%(first_name)s, %(last_name)s, %(age)s, %(dojo_id)s)"
         return connectToMySQL(DATABASE).query_db(query, data)
 
     #  Update info in table
     @classmethod
     def update(cls, data):
-        query = "UPDATE users SET first_name = %(first_name)s, last_name = %(last_name)s, email = %(email)s WHERE id = %(id)s;"
+        query = "UPDATE ninjas SET first_name = %(first_name)s, last_name = %(last_name)s, age = %(age)s, dojo_id = %(dojo_id)s WHERE id = %(id)s;"
         return connectToMySQL(DATABASE).query_db(query, data)
 
     # Delete info from table
 
     @classmethod
     def delete(cls, data):
-        query = "DELETE FROM users WHERE id = %(id)s;"
+        query = "DELETE FROM ninja WHERE id = %(id)s"
         return connectToMySQL(DATABASE).query_db(query, data)
+

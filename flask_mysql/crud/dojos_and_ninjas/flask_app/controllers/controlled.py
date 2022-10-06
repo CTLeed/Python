@@ -3,7 +3,7 @@ from flask import render_template, redirect, request
 from models.model import Model
 
 
-from flask_app.models.model import Model
+from flask_app.models.dojo_model import Model
 
 
 @app.route("/")
