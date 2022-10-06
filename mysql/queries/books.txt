@@ -1,0 +1,25 @@
+INSERT INTO users (name, created_at, updated_at) VALUES ('Jane Amsden', now(), now()), ('Emily Dixon', now(), now()), ('Theodore Dostoevsky', now(), now()), ('William Shapiro', now(), now()), ('Lao Xiu', now(), now());
+
+INSERT INTO books (title, created_at, updated_at) VALUES ('C Sharp', now(), now()), ('Java', now(), now()), ('Python', now(), now()), ('PHP', now(), now()), ('Ruby', now(), now());
+
+UPDATE books SET title = 'C #' WHERE books.title = 'C Sharp';
+
+UPDATE users SET name = 'Bill' WHERE users.id = 4;
+
+INSERT INTO favorites (book_id, user_id) VALUES (1, 1), (2,1);
+
+INSERT INTO favorites (book_id, user_id) VALUES (1,2),(2,2),(3,2);
+
+INSERT INTO favorites (book_id, user_id) VALUES (1,3),(2,3),(3,3),(4,3);
+
+INSERT INTO favorites (book_id, user_id) VALUES (1,4),(2,4),(3,4),(4,4),(5,4);
+
+SELECT * FROM users JOIN favorites ON favorites.user_id = users.id WHERE book_id = 3;
+
+DELETE FROM favorites WHERE book_id = 3 LIMIT 1;
+
+INSERT INTO favorites (book_id, user_id) VALUES(2,5);
+
+SELECT * FROM books JOIN favorites ON favorites.book_id = books.id WHERE user_id = 3;
+
+SELECT * FROM users JOIN favorites ON favorites.user_id = users.id WHERE book_id = 5;

@@ -1,7 +1,5 @@
-from flask import Flask, render_template, request, redirect, session
-
-app = Flask(__name__)
-app.secret_key = "It's the one that says BAD M F'er on it"
+from flask_app import app
+from flask_app.controllers import models
 
 
 @app.route("/")
