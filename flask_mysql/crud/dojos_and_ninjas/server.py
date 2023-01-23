@@ -1,10 +1,5 @@
 from flask_app import app
-from flask_app.controllers import models
-
-
-@app.route("/")
-def main():
-    return render_template("index.html")
+from flask_app.controllers import dojo_controller, ninja_controller
 
 
 if __name__ == "__main__":

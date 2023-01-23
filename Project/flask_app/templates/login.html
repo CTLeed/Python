@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <title>Login</title>
+</head>
+
+<body>
+    <!-- Navbar/header -->
+    <nav class="navbar has-background-info p-3" id="landing_nav" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <div class="logo is-flex">
+                <img class="image is-24x24" src="{{ url_for('static', filename='imgs/logo.png') }}">
+                <p class="title has-text-link-dark">
+                    EDING Edge Finances
+                </p>
+            </div>
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <!-- Navbar buttons -->
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item has-text-white" href="/users/about">
+                    About Us
+                </a>
+                <a class="navbar-item has-text-white" href="/">
+                    Home
+                </a>
+            </div>
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a class="button is-link" href="/users/register">
+                            <strong>Register</strong>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main container -->
+    <div class="container">
+        <div class="container is-flex is-justify-content-center p-3" id="grad">
+            <div class="card p-3" id="reg_card">
+                <div class=" card-header">
+                    <h1 class="card-header-title title is-3">Login</h1>
+                </div>
+                <div class="is-flex is-flex-direction-column is-justify-content-center">
+                    <form action="/users/login_process" method="post">
+                        <div class="right card bg-dark text-white col-4 m-4 p-3">
+                            <div class="field">
+                                <p class="control has-icons-left has-icons-right">
+                                    <input class="input" type="email" name="email" placeholder="Email">
+                                    <span class="icon is-small is-left">
+                                        <img class="image is-16x16"
+                                            src="{{ url_for('static', filename='imgs/email.png') }}"></img>
+                                    </span>
+                                </p>
+                            </div>
+                            {% for message in get_flashed_messages(category_filter=["email"]) %}
+                            <div class="is-flex is-align-items-center">
+                                <img class="image is-16x16" src="{{ url_for('static', filename='imgs/caution.png') }}">
+                                <p class="has-text-danger">{{message}}</p>
+                            </div>
+                            {% endfor %}
+                            <div class="field">
+                                <p class="control has-icons-left">
+                                    <input class="input" type="password" name="password" placeholder="Password">
+                                    <span class="icon is-small is-left">
+                                        <img class="image is-16x16"
+                                            src="{{ url_for('static', filename='imgs/padlock.png') }}"></img>
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="is-flex is-justify-content-end p-3">
+                                <button class="button is-link">Login</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                <a href="https://www.flaticon.com/free-icons/lock" title="lock icons">Lock icons created by DinosoftLabs
+                    -
+                    Flaticon </a> |
+                <a href="https://www.flaticon.com/free-icons/email" title="email icons"> Email icons created by Freepik
+                    -
+                    Flaticon </a> |
+                Photo by <a
+                    href="https://unsplash.com/@sadswim?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">ian
+                    dooley</a> on <a
+                    href="https://unsplash.com/s/photos/financial-freedom?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+                |
+            </p>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,4 +1,18 @@
 * {
     margin: 0;
     padding: 0;
+    list-style: none;
+    /* text-align: center; */
+}
+
+main {
+    margin: 0 auto;
+}
+
+li {
+    text-align: left;
+}
+
+.right {
+    width: 300px;
 }

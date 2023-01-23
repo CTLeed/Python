@@ -1,0 +1,29 @@
+.left {
+    min-height: 100%;
+    max-width: 400px;
+}
+
+.right {
+    min-height: 100%;
+    max-width: 400px;
+}
+
+.col-6 {
+    width: 100%;
+}
+
+.alert {
+    height: 40px;
+}
+
+svg {
+    height: 20px;
+}
+
+p {
+    margin: inherit;
+}
+
+.alert button {
+    justify-self: end;
+}

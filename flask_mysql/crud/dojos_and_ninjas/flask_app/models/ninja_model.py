@@ -1,11 +1,13 @@
 from flask_app.config.mysqlconnection import connectToMySQL
+from flask_app.models import dojo_model
 DATABASE = "dojos_and_ninjas_schema"
 
 
 class Ninja:
     def __init__(self, data):
         self.id = data["id"]
-        self.name = data["name"]
+        self.first_name = data["first_name"]
+        self.last_name = data["last_name"]
         self.age = data["age"]
         self.dojo_id = data["dojo_id"]
         self.created_at = data["created_at"]
@@ -14,7 +16,7 @@ class Ninja:
 
     # Get all info from table
 
-     @classmethod
+    @classmethod
     def get_all(cls):
         query = "SELECT * FROM ninjas"
         ninjas_from_db = connectToMySQL(DATABASE).query_db(query)
@@ -50,4 +52,3 @@ class Ninja:
     def delete(cls, data):
         query = "DELETE FROM ninja WHERE id = %(id)s"
         return connectToMySQL(DATABASE).query_db(query, data)
-

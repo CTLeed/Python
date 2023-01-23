@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <title>Authors</title>
+</head>
+<body>
+    <div class="d-flex justify-content-around p-3">
+        <div>
+            <h1 class="mb-3">New Author</h1>
+            <form action="/author/create" method="post">
+                <label for="name">Name:</label>
+                {% for messages in get_flashed_messages() %}
+                <p class="text-danger">{{messages}}</p>
+                {% endfor %}
+                <input type="text" name="name" id="name">
+                <button class="btn btn-primary d-block ms-5 mt-3">Create</button>
+            </form>
+        </div>
+        <div>
+            <h1>All Authors</h1>
+            <div class="border border-dark text-center">
+                {% for author in authors %}
+                <a href="/author/show/{{author.id}}" class="text-decoration-none d-block">{{author.name}}</a>
+                {% endfor %}
+            </div>
+            <a href="/books" class="btn btn-dark mt-3">Add a Book</a>
+        </div>
+    </div>
+</body>
+</html>

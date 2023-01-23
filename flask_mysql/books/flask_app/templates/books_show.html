@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <title>Books</title>
+</head>
+<body>
+    <div class="d-flex justify-content-around p-3">
+        <div>
+            <h1 class="mb-3">New Book</h1>
+            <form action="/book/create" method="post">
+                <label for="title" class="form-label">Title:</label>
+                {% for messages in get_flashed_messages(category_filter=["title"]) %}
+                <p class="text-danger">{{messages}}</p>
+                {% endfor %}
+                <input type="text" name="title" id="title" class="form-control mb-1">
+                <label for="num_of_pages" class="form-label">Number of pages:</label>
+                {% for messages in get_flashed_messages(category_filter=["num"]) %}
+                <p class="text-danger">{{messages}}</p>
+                {% endfor %}
+                <input type="text" name="num_of_pages" id="num_of_pages" class="form-control">
+                <button class="btn btn-primary d-block ms-5 mt-3">Create</button>
+            </form>
+        </div>
+        <div>
+            <h1>All Authors</h1>
+            <div class=" p-2 border border-dark text-center">
+                {% for book in books %}
+                <a href="/book/show/{{book.id}}" class="text-decoration-none d-block">{{book.title}}</a>
+                {% endfor %}
+            </div>
+            <a href="/" class="btn btn-dark mt-3">Home</a>
+        </div>
+    </div>
+</body>
+</html>

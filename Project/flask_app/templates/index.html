@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <nav class="navbar has-background-info p-3" id="landing_nav" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <div class="logo is-flex">
+                <img class="image is-24x24" src="{{ url_for('static', filename='imgs/logo.png') }}">
+                <p class="title has-text-link-dark">
+                    EDING Edge Finances
+                </p>
+            </div>
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                data-target="navbarBasicExample">
+                <span aria-hidden="true">About Us</span>
+                <span aria-hidden="true">Sign Up</span>
+                <span aria-hidden="true">Register</span>
+            </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item has-text-white" href="/users/about">
+                    About Us
+                </a>
+            </div>
+        </div>
+
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <div class="buttons">
+                    {% if not session.user_id %}
+                    <a class="button is-link" href="/users/register">
+                        <strong>Sign Up</strong>
+                    </a>
+                    <a class="button is-light" href="/users/login">
+                        Log in
+                    </a>
+                    {% else %}
+                    <a class="button is-link" href="/dashboard/{{session.user_id}}">
+                        <strong>Main Page</strong>
+                    </a>
+                    <a class="button is-danger" href="/users/logout">
+                        Logout
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        </div>
+    </nav>
+
+    <div class="container has-text-white p-3" id="landing_container">
+        Ballin' on a budget? Let us help!
+
+    </div>
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                Photo by <a
+                    href="https://unsplash.com/@sadswim?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">ian
+                    dooley</a> on <a
+                    href="https://unsplash.com/s/photos/financial-freedom?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+                |
+            </p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

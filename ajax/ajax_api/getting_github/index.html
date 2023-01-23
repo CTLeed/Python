@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="tabs is-centered">
+        <ul>
+            <li class="is-active">
+                <a>
+                    <span class="icon is-medium"><i class="fas fa-image" aria-hidden="true"></i></span>
+                    <span>This</span>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <span class="icon is-medium"><i class="fas fa-music" aria-hidden="true"></i></span>
+                    <span>Is Just</span>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <span class="icon is-medium"><i class="fas fa-film" aria-hidden="true"></i></span>
+                    <span>For</span>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <span class="icon is-medium"><i class="far fa-file-alt" aria-hidden="true"></i></span>
+                    <span>Funsies</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <section class="tile">
+        <div class="container">
+            <div class="tile is-parent">
+                <article class="tile is-child notification is-dark">
+                    <p class="title">Find GitHub User</p>
+                    <form onsubmit="getUser(event)">
+                        <input class="input is-rounded is-medium" type="text" name="gitName" id="gitName">
+                        <div class="is-flex is-justify-content-flex-end">
+                            <button class="button is-link is-focused">
+                                <span>Git User</span>
+                            </button>
+                        </div>
+                    </form>
+                </article>
+            </div>
+        </div>
+    </section>
+    <div class="container" id="gitResults">
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

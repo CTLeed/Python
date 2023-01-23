@@ -29,7 +29,7 @@
                 <td>{{each_user.id}}</td>
                 <td>{{each_user.first_name}} {{each_user.last_name}}</td>
                 <td>{{each_user.email}}</td>
-                <td>{{each_user.created_at}}</td>
+                <td>{{each_user.created_at.strftime('%B %d, %Y')}}</td>
                 <td><a href="/users/{{each_user.id}}">Show</a> | <a href="/users/{{each_user.id}}/edit">Edit</a> | <a
                         href="/users/{{each_user.id}}/delete">Delete</a></td>
             </tr>

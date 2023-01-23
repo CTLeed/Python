@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <title>Account Summary</title>
+</head>
+
+<body class="logged">
+    <nav class="navbar has-background-info p-3" id="landing_nav" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <div class="logo is-flex">
+                <img class="image is-24x24" src="{{ url_for('static', filename='imgs/logo.png') }}">
+                <p class="title has-text-link-dark">
+                    EDING Edge Finances
+                </p>
+            </div>
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item has-text-white" href="/users/about">
+                    About Us
+                </a>
+            </div>
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <h3 class="title is-3 me-3" id="welcome"><span>L</span>et's get it {{session.first_name}}!</h3>
+                        <a class="button is-danger" href="/users/logout">
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="columns p-3">
+            <div class="column is-two-thirds">
+                <table class="table is-striped is-fullwidth" id="list">
+                    <thead>
+                        <tr>
+                            <th>Amount</th>
+                            <th>Business</th>
+                            <th>Date</th>
+                            <th>Category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for each_expense in user.expenses %}
+                        <tr>
+                            <td>$ {% if (each_expense.category == "deposit") %}
+                                +{% endif %}{{each_expense.amount}}</td>
+                            <td>{{each_expense.payee|capitalize}}</td>
+                            <td>{{each_expense.date.strftime('%B %d, %Y')}}</td>
+                            <td>{{each_expense.category|capitalize}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <table class="table">
+                    <tr>
+                        <td><b>Balance:</b></td>
+                        <td>${{user.balance}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="column">
+                <div class="field">
+                    <form action="/users/process_expense" method="post">
+                        <label class="label" for="payee">Payee:</label>
+                        <div class="control">
+                            <input class="input" type="text" name="payee" id="payee">
+                        </div>
+                        <label class="label" for="category">Category:</label>
+                        <div class="control">
+                            <div class="select">
+                                <select name="category" id="category" class="is-hovered">
+                                    <option disabled selected value="none">Choose a Spending Category</option>
+                                    <option value="bills">Bills and Utilities</option>
+                                    <option value="food">Food and Dining</option>
+                                    <option value="auto">Auto and Transport</option>
+                                    <option value="other">All Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <label class="label" for="amount">Amount:</label>
+                        <div class="control">
+                            <input class="input" type="number" name="amount" id="amount">
+                        </div>
+                        <label class="label" for="date">Date:</label>
+                        <div class="control">
+                            <input class="input" type="date" name="date" id="date">
+                        </div>
+                        <button class="button is-dark mt-4">Enter</button>
+                    </form>
+                </div>
+                <div class="field mt-5">
+                    <form action="/users/process_deposit" method="post">
+                        <label class="label" for="payor">Payor: </label>
+                        <div class="control">
+                            <input class="input" type="text" name="payee" id="payor">
+                        </div>
+                        <label class="label" for="deposit">Deposit Amount:</label>
+                        <div class="control">
+                            <input class="input" type="number" name="amount" id="deposit">
+                        </div>
+                        <label class="label" for="dep_date">Date: </label>
+                        <div class="control">
+                            <input class="input" type="date" name="date" id="dep_date">
+                        </div>
+                        <button class="button is-success mt-4">Add $</button>
+                        <input type="hidden" class="hidden" name="category" value="deposit">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

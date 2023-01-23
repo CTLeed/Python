@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Recipe Share</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Welcome, {{session.first_name}}</h1>
+        <div class="header d-flex justify-content-end">
+            <div class="buttons">
+                <a href="/recipes">back to recipes</a>
+                <a href="/users/logout">logout</a>
+            </div>
+        </div>
+        <div class="title d-flex justify-content-between">
+            <h1>{{recipe.name}}</h1>
+            <h2>Posted by: {% if (session.first_name == recipe.maker.first_name) %} Me {% else %}
+                {{recipe.maker.first_name}} {% endif %}</h2>
+        </div>
+        <div class="card d-flex justify-content-between p-3 w-75">
+            <table class="table table-striped">
+                <tr>
+                    <td>
+                        <p><b>Description:</b></p>
+                    </td>
+                    <td>
+                        <p>{{recipe.description}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><b>Under 30 Minutes?</b></p>
+                    </td>
+                    {% if recipe.under_30 == 1 %}
+                    <td>
+                        <p>YES</p>
+                    </td>
+                    {% elif recipe.under_30 == 0 %}
+                    <td>
+                        <p>NO</p>
+                    </td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td>
+                        <p><b>Instructions:</b></p>
+                    </td>
+                    <td>
+                        <p>{{recipe.instructions}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><b>Date Made:</b></p>
+                    </td>
+                    <td>
+                        <p>{{recipe.date_made.strftime('%B %d, %Y')}}</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

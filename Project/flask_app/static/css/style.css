@@ -1,0 +1,70 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.icon img {
+    opacity: 50%;
+}
+
+#reg_card {
+    background-color: whitesmoke;
+}
+
+.container {
+    height: 80vh;
+}
+
+.columns {
+    height: 80vh;
+}
+
+section {
+    padding-bottom: 0;
+}
+
+body {
+    background-image: url("/static/imgs/ian-dooley-hpTH5b6mo2s-unsplash.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: hsl(204, 71%, 39%);
+}
+
+#leeds {
+    border-radius: 8px;
+    height: 80%;
+    margin: inherit;
+}
+
+.logged {
+    background: radial-gradient(ellipse at top, rgb(0, 163, 180), rgb(0, 142, 162));
+}
+
+.table {
+    background: radial-gradient(ellipse, rgb(0, 163, 180), rgb(0, 142, 162));
+}
+
+#list {
+    max-height: 65vh;
+    overflow-y: auto;
+}
+
+td {
+    max-height: 30px;
+}
+
+.logo p {
+    font-size: 1.8rem;
+}
+
+.navbar {
+    background-image: url("/static/imgs/header.jpg");
+    background-position: center;
+    background-blend-mode: hard-light;
+    background-repeat: no-repeat;
+}
+
+#welcome {
+    color: white;
+}

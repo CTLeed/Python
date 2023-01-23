@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Share</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Edit Recipe!</h1>
+            <div class="buttons">
+                <a href="/recipes">back to recipes</a>
+                <a href="/users/logout">logout</a>
+            </div>
+        </div>
+        {% for message in get_flashed_messages() %}
+        <p>{{message}}</p>
+        {% endfor %}
+        <form action="/recipe/update" method="post">
+            <div class="left card">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" name="name" id="name" value="{{recipe.name}}">
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <input type="text" class="form-control" name="description" id="description" row="3"
+                        value="{{recipe.description}}">
+                </div>
+                <div class="mb-3">
+                    <label for="instructions" class="form-label">Instructions</label>
+                    <input type="text" class="form-control" name="instructions" id="instructions" row="4"
+                        value="{{recipe.instructions}}">
+                </div>
+                <div class="mb-3">
+                    <label for="date_made" class="form-label">Date Cooked/Made</label>
+                    <input type="date" class="form-control" name="date_made" id="date_made"
+                        value="{{recipe.date_made}}">
+                </div>
+                <div class="form-check mb-3">
+                    <p>Under 30 minutes?</p>
+                    <input class="form-check-input" type="radio" name="under_30" id="under_30" value="1" {% if
+                        recipe.under_30==1 %}checked{% endif %}>
+                    <label class="form-check-label" for="under_30">
+                        YES
+                    </label>
+                </div>
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="radio" name="under_30" id="under_30" value="0" {% if
+                        recipe.under_30==0 %}checked{% endif %}>
+                    <label class="form-check-label" for="under_30">
+                        NO
+                    </label>
+                    <input type="hidden" class="hidden" name="id" value="{{recipe.id}}">
+                </div>
+                <button class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<body class="logged">
+    <nav class="navbar has-background-info p-3" id="landing_nav" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <div class="logo is-flex">
+                <img class="image is-24x24" src="{{ url_for('static', filename='imgs/logo.png') }}">
+                <p class="title has-text-link-dark">
+                    EDING Edge Finances
+                </p>
+            </div>
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item has-text-white" href="/users/about">
+                    About Us
+                </a>
+            </div>
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a class="button is-link" href="/dashboard/{{session.user_id}}">
+                            Main
+                        </a>
+                        <a class="button is-danger" href="/users/logout">
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <form action="/users/process_transaction" method="post">
+            <label for="business">Description:</label>
+            <input type="text" name="business" id="business">
+            <div class="select">
+                <select name="category" id="category" class="is-hovered">
+                    <option value="">Choose a Spending Category</option>
+                    <option value="bills">Bills and Utilities</option>
+                    <option value="food">Food and Dining</option>
+                    <option value="auto">Auto and Transport</option>
+                    <option value="other">All Other</option>
+                </select>
+            </div>
+            <label for="amount">Amount: $</label>
+            <input type="text" name="amount" id="amount">
+            <label for="date">Amount:</label>
+            <input type="date" name="date" id="date">
+            <button class="button is-warning">Enter</button>
+        </form>
+
+    </div>
+</body>
+
+</html>

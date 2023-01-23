@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <title>Author Show</title>
+</head>
+<body>
+    <div class="d-flex justify-content-around p-3">
+        <div>
+            <h1 class="mb-3">{{author.name}}'s Favorites</h1>
+            <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Title</th>
+                        <th># of pages</th>
+                    </tr>
+                </thead>
+                <tbody class="table-striped">
+                    {% for book in author.favorites %}
+                    <tr>
+                        <td>{{book.title}}</td>
+                        <td>{{book.num_of_pages}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href="/" class="btn btn-dark mt-3">Home</a>
+        </div>
+        <div>
+            <h1>Add Author's Favorites</h1>
+            <form action="/add/favorites/{{author.id}}" method="post">
+                <label for="book_id">Books:</label>
+                <select name="book_id" id="book_id" class="ms-4">
+                {% for book in books %}
+                {% if not book.id in book_ids %}
+                <option value="{{book.id}}">{{book.title}}</option>
+                {% endif %}
+                {% endfor %}
+                </select>
+                <button class="btn btn-primary d-block mt-2">Add</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
